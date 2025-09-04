@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: [],
+    formats: ['image/webp', 'image/avif'],
+  },
+  // Optimize fonts
+  optimizeFonts: true,
 };
 
 export default nextConfig;

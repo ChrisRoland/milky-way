@@ -57,15 +57,15 @@ export default function Header() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: 'easeInOut' }}
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled && 'backdrop-blur-md bg-black/20'
+          isScrolled && ' bg-black/25'
         )}
       >
-        <div className="flex items-center justify-between px-6 md:px-10 lg:px-16 py-6 md:py-8 relative">
+        <div className="flex items-center justify-between px-6 md:px-0 lg:px-0 py-6 md:pt-8 md:pb-0  relative">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0 z-50">
+          <Link href="/" className="flex-shrink-0 z-50 md:pl-15">
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -81,8 +81,8 @@ export default function Header() {
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation Line - starts after logo, goes under nav */}
-          <div className="hidden lg:block absolute left-32 right-96 top-1/2 transform -translate-y-1/2 h-px bg-white/25 z-0"></div>
+          {/* Desktop Navigation Line */}
+          <div className="hidden mx-20 lg:block absolute left-18 right-[37rem] top-[65%] transform -translate-y-1/2 h-px bg-white/25 z-50"></div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block relative z-10">
@@ -106,7 +106,7 @@ export default function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      'nav-underline nav-text flex items-center space-x-3 px-6 py-2 transition-colors duration-300',
+                      'nav-underline nav-text flex items-center space-x-3 mx-6 py-2 transition-colors duration-300',
                       isActiveRoute(item.href) 
                         ? 'text-white active' 
                         : 'text-white/75 hover:text-white'
