@@ -2,7 +2,7 @@
 
 A modern, responsive space tourism website built with Next.js, TypeScript, and Tailwind CSS. Features interactive destination selection, crew profiles, and technology showcases with smooth animations.
 
-![Preview](public/image.png)
+![Preview](public/Screenshot%202025-09-04%20at%2021.12.10.png)
 
 ## Features
 - **Responsive Design**: Pixel-perfect layouts for mobile, tablet, and desktop
