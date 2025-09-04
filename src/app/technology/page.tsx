@@ -1,12 +1,12 @@
 import Layout from '@/components/layout/LayoutWrapper';
 import PageTransition from '@/components/ui/PageTransition';
-import Hero from '@/components/sections/Hero';
+import TechnologyTabs from '@/components/sections/TechnologyTabs';
 
-export default function Home() {
+export default function TechnologyPage() {
   return (
     <Layout>
       <PageTransition>
-        <Hero />
+        <TechnologyTabs />
       </PageTransition>
     </Layout>
   );

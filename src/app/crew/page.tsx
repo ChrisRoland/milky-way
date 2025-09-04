@@ -1,12 +1,12 @@
 import Layout from '@/components/layout/LayoutWrapper';
 import PageTransition from '@/components/ui/PageTransition';
-import Hero from '@/components/sections/Hero';
+import CrewCarousel from '@/components/sections/CrewCarousel';
 
-export default function Home() {
+export default function CrewPage() {
   return (
     <Layout>
       <PageTransition>
-        <Hero />
+        <CrewCarousel />
       </PageTransition>
     </Layout>
   );

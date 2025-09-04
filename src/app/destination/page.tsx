@@ -1,12 +1,12 @@
 import Layout from '@/components/layout/LayoutWrapper';
 import PageTransition from '@/components/ui/PageTransition';
-import Hero from '@/components/sections/Hero';
+import DestinationSelector from '@/components/sections/DestinationSelector';
 
-export default function Home() {
+export default function DestinationPage() {
   return (
     <Layout>
       <PageTransition>
-        <Hero />
+        <DestinationSelector />
       </PageTransition>
     </Layout>
   );

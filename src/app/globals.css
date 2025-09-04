@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Barlow+Condensed:wght@400;700&family=Barlow:wght@400;700&display=swap');
 
 :root {
   --background: #ffffff;
@@ -19,8 +20,309 @@
   }
 }
 
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} */
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Space theme override for space pages */
+.space-theme {
+  background-color: #0B0D17;
+  color: #FFFFFF;
+}
+
+.space-theme body {
+  background-color: #0B0D17;
+  color: #FFFFFF;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0D17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #383B4B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D0D6F9;
+}
+
+/* Typography utility classes - using regular CSS instead of @apply */
+.heading-1 {
+  font-family: 'Bellefair', serif;
+  font-size: 9.375rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.heading-2 {
+  font-family: 'Bellefair', serif;
+  font-size: 6.25rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.heading-3 {
+  font-family: 'Bellefair', serif;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.heading-4 {
+  font-family: 'Bellefair', serif;
+  font-size: 2rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.heading-5 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: 4.75px;
+  text-transform: uppercase;
+  color: #D0D6F9;
+}
+
+.subheading-1 {
+  font-family: 'Bellefair', serif;
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.subheading-2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 2.35px;
+  text-transform: uppercase;
+}
+
+.nav-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 2.7px;
+  text-transform: uppercase;
+}
+
+.body-text {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #D0D6F9;
+}
+
+/* Navigation underline animation */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1.8rem;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #FFFFFF;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-underline:hover::after {
+  width: 100%;
+  background-color: #FFFFFF8b;
+}
+.nav-underline.active::after {
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+/* Explore button animation */
+.explore-btn {
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.explore-btn::before {
+  content: '';
+  position: absolute;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  scale: 0;
+  transition: scale 0.4s ease;
+  z-index: -1;
+}
+
+.explore-btn:hover::before {
+  scale: 1.4;
+}
+
+/* Planet selection tabs */
+.planet-tab {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.planet-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #FFFFFF;
+  transition: width 0.3s ease-in-out;
+}
+
+.planet-tab:hover::after,
+.planet-tab.active::after {
+  width: 100%;
+}
+
+/* Crew dots pagination */
+.crew-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.17);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.crew-dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.crew-dot.active {
+  background-color: #FFFFFF;
+}
+
+/* Technology numbered navigation */
+.tech-number {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: transparent;
+  color: #FFFFFF;
+  font-family: 'Bellefair', serif;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-number:hover {
+  border-color: #FFFFFF;
+}
+
+.tech-number.active {
+  background-color: #FFFFFF;
+  color: #0B0D17;
+}
+
+/* Mobile responsive typography */
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: 3rem;
+  }
+  
+  .heading-2 {
+    font-size: 2.5rem;
+  }
+  
+  .heading-3 {
+    font-size: 1.5rem;
+  }
+  
+  .heading-5 {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  
+  .body-text {
+    font-size: 1rem;
+  }
+
+  .tech-number {
+  width: 60px;
+  height: 60px;
+}
+}
+
+@media (min-width: 769px) and (max-width: 1439px) {
+  .heading-1 {
+    font-size: 8rem;
+  }
+  
+  .heading-2 {
+    font-size: 5rem;
+  }
+  
+  .heading-3 {
+    font-size: 3rem;
+  }
+
+  .tech-number {
+  width: 60px;
+  height: 60px;
+}
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
