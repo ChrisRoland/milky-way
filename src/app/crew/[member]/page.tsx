@@ -5,9 +5,9 @@ import CrewDetail from '@/components/sections/CrewDetail';
 import { getCrewMemberBySlug, getAllCrewMembers } from '@/utils/data';
 
 interface CrewPageProps {
-  params: {
+  params: Promise<{
     member: string;
-  };
+  }>;
 }
 
 // Generate static paths for all crew members
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CrewMemberPage({ params }: CrewPageProps) {
-  const crewMember = getCrewMemberBySlug(params.member);
+export default async function CrewMemberPage({ params }: CrewPageProps) {
+  const { member } = await params;
+  const crewMember = getCrewMemberBySlug(member);
 
   if (!crewMember) {
     notFound();

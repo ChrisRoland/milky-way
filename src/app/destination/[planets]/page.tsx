@@ -5,9 +5,9 @@ import DestinationDetail from '@/components/sections/DestinationDetail';
 import { getDestinationBySlug, getAllDestinations } from '@/utils/data';
 
 interface DestinationPageProps {
-  params: {
+  params: Promise<{
     planet: string;
-  };
+  }>;
 }
 
 // Generate static paths for all destinations
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function DestinationPage({ params }: DestinationPageProps) {
-  const destination = getDestinationBySlug(params.planet);
+export default async function DestinationPage({ params }: DestinationPageProps) {
+  const { planet } = await params;
+  const destination = getDestinationBySlug(planet);
 
   if (!destination) {
     notFound();

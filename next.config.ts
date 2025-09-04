@@ -5,8 +5,6 @@ const nextConfig: NextConfig = {
     domains: [],
     formats: ['image/webp', 'image/avif'],
   },
-  // Optimize fonts
-  optimizeFonts: true,
 };
 
 export default nextConfig;

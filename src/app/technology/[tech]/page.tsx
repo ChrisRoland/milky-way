@@ -5,9 +5,9 @@ import TechnologyDetail from '@/components/sections/TechnologyDetail';
 import { getTechnologyBySlug, getAllTechnology } from '@/utils/data';
 
 interface TechnologyPageProps {
-  params: {
+  params: Promise<{
     tech: string;
-  };
+  }>;
 }
 
 // Generate static paths for all technology items
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function TechnologyPage({ params }: TechnologyPageProps) {
-  const technology = getTechnologyBySlug(params.tech);
+export default async function TechnologyPage({ params }: TechnologyPageProps) {
+  const { tech } = await params;
+  const technology = getTechnologyBySlug(tech);
 
   if (!technology) {
     notFound();
