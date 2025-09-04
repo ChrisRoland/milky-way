@@ -1,10 +1,9 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Header from './Header';
-import { getBackgroundClasses } from '@/utils/cn';
 
 interface LayoutProps {
   children: ReactNode;
@@ -18,28 +17,56 @@ const getPageSection = (pathname: string): 'home' | 'destination' | 'crew' | 'te
   return 'home';
 };
 
-const pageTransition = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-  transition: { duration: 0.6, ease: 'easeInOut' }
-} as const;
-
 export default function Layout({ children }: LayoutProps) {
   const pathname = usePathname();
   const section = getPageSection(pathname);
-  
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  useEffect(() => {
+    // Function to get the right background based on screen size
+    const updateBackground = () => {
+      const width = window.innerWidth;
+      let suffix = 'desktop';
+      
+      if (width < 768) {
+        suffix = 'mobile';
+      } else if (width < 1024) {
+        suffix = 'tablet';
+      }
+      
+      const bgPath = `/assets/${section}/background-${section}-${suffix}.jpg`;
+      // console.log('Setting background to:', bgPath); // Debug log
+      setBackgroundImage(bgPath);
+    };
+
+    updateBackground();
+    window.addEventListener('resize', updateBackground);
+    return () => window.removeEventListener('resize', updateBackground);
+  }, [section]);
+
+  const backgroundStyle = {
+    backgroundImage: `url('${backgroundImage}')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',
+    backgroundColor: '#0B0D17', // fallback
+  };
+
   return (
-    <div className="space-theme min-h-screen">
-      <div className={getBackgroundClasses(section)}>
+    <div className="space-theme">
+      <div style={backgroundStyle}>
         <Header />
         
         <motion.main
           key={pathname}
-          {...pageTransition}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
           className="relative z-10"
         >
-          <div className="pt-20 md:pt-24 lg:pt-28">
+          <div className="pt-20 lg:pl-[10rem] max-sm:md:px-10 md:pt-24 lg:pt-28">
             {children}
           </div>
         </motion.main>
